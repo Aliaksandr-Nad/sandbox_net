@@ -58,7 +58,7 @@ namespace RockPaperScissors
                 LogAvailableMoves();
                 Console.Write("Enter your move: ");
                 var answer = Console.ReadLine();
-                isCorrect = int.TryParse(answer, out result) && result >= 0 && result <= Moves.Length + 1;
+                isCorrect = int.TryParse(answer, out result) && result >= 0 && result <= Moves.Length;
             } while (!isCorrect);
 
             return result;
