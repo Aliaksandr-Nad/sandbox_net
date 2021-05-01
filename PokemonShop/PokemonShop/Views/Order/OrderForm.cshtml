@@ -1,0 +1,31 @@
+﻿@using PokemonShop.Models
+@model PokemonShop.Models.OrderDto
+
+<div style="width: 800px; margin: 15px;">
+    <form class="row g-3 needs-validation" asp-action="SaveOrder" asp-controller="Order" asp-antiforgery="true">
+        <div class="form-floating">
+            <input class="form-control" readonly="readonly" asp-for="Guid"/>
+            <label asp-for="Guid"></label>
+        </div>
+        <div class="form-floating col-md-6">
+            <input class="form-control" type="text" asp-for="Name"/>
+            <label asp-for="Name"></label>
+        </div>
+        <div class="form-floating col-md-6">
+            <input class="form-control" type="text" asp-for="Email"/>
+            <label asp-for="Email"></label>
+        </div>
+        <div class="form-floating col-md-6">
+            <input class="form-control" type="text" asp-for="Telephone"/>
+            <label asp-for="Telephone"></label>
+        </div>
+        <div class="form-floating col-md-6">
+            <input class="form-control" type="date" asp-for="StartDate"/>
+            <label asp-for="StartDate"></label>
+        </div>
+        <div class="d-grid gap-3">
+            <input class="btn btn-outline-warning" type="submit" value="Save"/>
+            <a class="btn btn-outline-danger" asp-controller="Order" asp-action="GetAllOrders">Cancel</a>
+        </div>
+    </form>
+</div>

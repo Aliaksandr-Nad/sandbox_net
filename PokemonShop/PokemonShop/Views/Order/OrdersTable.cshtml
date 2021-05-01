@@ -1,0 +1,46 @@
+﻿@model List<PokemonShop.Models.OrderDto>
+
+<div style="width: 100vw;">
+<table class="table table-hover">
+    <thead>
+    <th>Guid</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Telephone</th>
+    <th>StartDate</th>
+    <th></th>
+    <th></th>
+    </thead>
+    <tbody>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => item.Guid)</td>
+                                <td>@Html.DisplayFor(x => item.Name)</td>
+                <td>@Html.DisplayFor(x => item.Email)</td>
+                <td>@Html.DisplayFor(x => item.Telephone)</td>
+                <td>@Html.DisplayFor(x => item.StartDate)</td>
+                <td >
+                    <div class="d-grid">
+                        <a class="btn btn-outline-warning btn-sm" asp-controller="Order" asp-action="GetOrderByGuid" asp-route-guid="@item.Guid">Open</a>
+                    </div>
+                </td>
+                <td >
+                    <div class="d-grid">
+                        <a class="btn btn-outline-danger btn-sm" asp-controller="Order" asp-action="DeleteOrder" asp-route-guid="@item.Guid">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<div class="row px-3">
+    <a class="btn btn-outline-success" asp-controller="Order" asp-action="AddOrder">Add</a>
+</div>
+</div>
+@*  
+    TODO: https://getbootstrap.com/docs/5.0/forms/floating-labels/
+    TODO:https://metanit.com/sharp/aspnet5/19.2.php
+ *@

@@ -4,13 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PokemonShop.Services;
 
 namespace PokemonShop
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        
+
         private string Version => Configuration.GetValue<string>("Service:Version");
 
         private string Title => Configuration.GetValue<string>("Service:Title");
@@ -19,11 +20,13 @@ namespace PokemonShop
         {
             Configuration = configuration;
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = Title, Version = Version}); });
+
+            services.AddTransient<OrderService, OrderService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,7 +40,7 @@ namespace PokemonShop
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            
+
             app.UseHttpsRedirection()
                 .UseRouting()
                 .UseSwagger()
@@ -48,10 +51,7 @@ namespace PokemonShop
             app.UseAuthorization()
                 .UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
