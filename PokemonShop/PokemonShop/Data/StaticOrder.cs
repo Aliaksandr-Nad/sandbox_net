@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using PokemonShop.Models;
 
-namespace PokemonShop.DataBase
+namespace PokemonShop.Data
 {
     public static class StaticOrder
     {

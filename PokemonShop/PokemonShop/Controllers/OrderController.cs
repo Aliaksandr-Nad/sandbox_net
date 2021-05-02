@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PokemonShop.Models;
 using PokemonShop.Services;
@@ -42,11 +43,11 @@ namespace PokemonShop.Controllers
         }
 
         [Route("save")]
-        public IActionResult SaveOrder(OrderDto newOrder)
+        public async Task<IActionResult> SaveOrder(OrderDto newOrder)
         {
             try
             {
-                _orderService.ChangeEntity(newOrder);
+                await _orderService.SaveEntity(newOrder);
                 return RedirectToActionPermanent("GetAllOrders");
             }
             catch (Exception e)
@@ -57,11 +58,11 @@ namespace PokemonShop.Controllers
         }
 
         [Route("delete/{guid:guid}")]
-        public IActionResult DeleteOrder(Guid guid)
+        public async Task<IActionResult> DeleteOrder(Guid guid)
         {
             try
             {
-                _orderService.DeleteEntity(guid);
+                await _orderService.DeleteEntity(guid);
                 return RedirectToActionPermanent("GetAllOrders");
             }
             catch (Exception e)

@@ -1,3 +1,5 @@
-Service:
+PokemonShop:
     Title: PokemonShop
     Version: 0.0.1
+    ConnectionStrings:
+        PokemonShop: "Server=localhost;Database=pokemonshop;Uid=root;Pwd=admin;Convert Zero Datetime=True;ApplicationName=PokemonShop;"

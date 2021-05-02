@@ -4,27 +4,32 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PokemonShop.Extensions;
+using PokemonShop.Mappers;
 using PokemonShop.Services;
 
 namespace PokemonShop
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
 
-        private string Version => Configuration.GetValue<string>("Service:Version");
+        private string Version => _configuration.GetValue<string>("Version");
 
-        private string Title => Configuration.GetValue<string>("Service:Title");
+        private string Title => _configuration.GetValue<string>("Title");
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration.GetSection("PokemonShop");
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = Title, Version = Version}); });
+
+            services.UsePokemonShopDbContext(_configuration)
+                .AddAutoMapper(typeof(PokemonShopMapper).Assembly);
 
             services.AddTransient<OrderService, OrderService>();
         }
