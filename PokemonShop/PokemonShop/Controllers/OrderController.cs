@@ -10,10 +10,12 @@ namespace PokemonShop.Controllers
     public class OrderController : Controller
     {
         private readonly OrderService _orderService;
+        private readonly EmailService _emailService;
 
-        public OrderController(OrderService orderService)
+        public OrderController(OrderService orderService, EmailService emailService)
         {
             _orderService = orderService;
+            _emailService = emailService;
         }
 
         [HttpGet, Route("")]
@@ -48,6 +50,7 @@ namespace PokemonShop.Controllers
             try
             {
                 await _orderService.SaveEntity(newOrder);
+                await _emailService.SendEmailAsync(newOrder.Name, newOrder.Email);
                 return RedirectToActionPermanent("GetAllOrders");
             }
             catch (Exception e)

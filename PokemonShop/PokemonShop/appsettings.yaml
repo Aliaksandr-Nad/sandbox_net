@@ -1,5 +1,17 @@
 PokemonShop:
-    Title: PokemonShop
-    Version: 0.0.1
-    ConnectionStrings:
-        PokemonShop: "Server=localhost;Database=pokemonshop;Uid=root;Pwd=admin;Convert Zero Datetime=True;ApplicationName=PokemonShop;"
+  Title: PokemonShop
+  Version: 0.0.1
+  ConnectionStrings:
+    PokemonShop: "Server=localhost;Database=pokemonshop;Uid=root;Pwd=admin;Convert Zero Datetime=True;ApplicationName=PokemonShop;"
+  SmtpSettings:
+    # https://support.google.com/accounts/answer/185833?hl=en
+    FromEmail: "****"
+    Password: "****"
+
+    Host: "smtp.gmail.com"
+    Port: 587
+    UseSsl: false
+  SmtpTemplate:
+    Name: "Pokemon Shop"
+    Subject: "Pokemon Shop welcome message"
+    Message: "You order was confirm"

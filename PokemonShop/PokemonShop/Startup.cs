@@ -28,10 +28,13 @@ namespace PokemonShop
             services.AddControllersWithViews();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = Title, Version = Version}); });
 
+            services.Configure<AppSettings>(_configuration);
+
             services.UsePokemonShopDbContext(_configuration)
                 .AddAutoMapper(typeof(PokemonShopMapper).Assembly);
 
-            services.AddTransient<OrderService, OrderService>();
+            services.AddTransient<OrderService, OrderService>()
+                .AddTransient<EmailService, EmailService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
