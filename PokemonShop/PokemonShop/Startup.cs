@@ -56,7 +56,7 @@ namespace PokemonShop
 
             app.UseStaticFiles();
 
-            app.UseAuthorization()
+            app.UseAuthentication()
                 .UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

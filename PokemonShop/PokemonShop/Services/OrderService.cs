@@ -14,13 +14,11 @@ namespace PokemonShop.Services
     {
         private readonly PokemonShopDbContext _pokemonShopDbContext;
         private readonly IMapper _mapper;
-        private static List<OrderDto> _orderList;
 
         public OrderService(PokemonShopDbContext pokemonShopDbContext, IMapper mapper)
         {
             _pokemonShopDbContext = pokemonShopDbContext;
             _mapper = mapper;
-            _orderList = StaticOrder.OrderList;
         }
 
         public List<OrderDto> GetAll()
