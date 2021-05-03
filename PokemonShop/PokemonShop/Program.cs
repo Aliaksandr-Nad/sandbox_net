@@ -20,8 +20,8 @@ namespace PokemonShop
                         builder
                             .SetBasePath(context.HostingEnvironment.ContentRootPath)
                             .AddYamlFile("appsettings.yaml", false, true)
-                            // .AddYamlFile($"appsettings.{context.HostingEnvironment.EnvironmentName.ToLower()}.yaml",
-                                // true, true)
+                            .AddYamlFile($"appsettings.{context.HostingEnvironment.EnvironmentName.ToLower()}.yaml",
+                                true, true)
                             .AddEnvironmentVariables();
                     });
 

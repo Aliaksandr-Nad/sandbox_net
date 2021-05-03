@@ -1,0 +1,3 @@
+﻿PokemonShop:
+  ConnectionStrings:
+    PokemonShop: "server=db;port=3306;Database=pokemonshop;Uid=user;Pwd=user;Convert Zero Datetime=True;ApplicationName=PokemonShop;"
